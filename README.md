@@ -34,6 +34,7 @@ python queue_processor.py
 
 ## To Test
 First you need to change the ALLEGRO PATH (line 86) in the batch_extractor.py (inside the processor app) to the path where your allegro application is located. 
+You also need to change the path in the open.bat file to the your allegro application location.
 
 You can use Postman to create/simulate requests.
 I have added sample requests inside the postman collection (json file in the test_resources directory)
