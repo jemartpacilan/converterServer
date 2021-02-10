@@ -1,28 +1,48 @@
-# Converter 
+# Converter Server
 
-A job that extracts a zipped file 
+Server will take download requests from Snapeda website when the downloaded format is OrCAD/Allegro and will start the process to convert an EDF file to an OLB file.
+
+Current implementation:
+    Since I have no access with the download request url/endpoint of the SnapEDA website, I have created a custom endpoint that will create a job.
+    This job will then be added to the queue to process the test zipped file. The test zipped file can be found in the test_resources directory.
+
+    To run the queue for testing, run this command ```python queue_processor.py```. This script will perform requests to get the job that is ready to be processed in the queue. More info on how you test this in the "To Test" section
 
 ## Requirements
 
 Python 3.x
 
+## Installation
+I suggest to setup a virtual env of your choice before installing the dependencies.
+
+To install the dependencies of this project, run:
+```
+pip install -r requirements.txt
+```
+
 ## Usage (Command Line Execution)
-
+Run Server
 ```python
-python WordSearch.py name_of_input_file
+python manage.py runserver
 ```
 
-## To Run Test
-
+Run queue processor
 ```python
-python WordSearchTest.py
+python queue_processor.py
 ```
 
-## File Structure
-```
-WordSearch.py     <--------  Main python program
-WordSearchTest.py <--------  Executes unit tests for the main python program
-animals.pzl          |-----
-lostDuck.pzl      <--|-----  Input files for test 
-search.pzl           |-----
-```
+## To Test
+First you need to change the ALLEGRO PATH variable (line 86) in the batch_extractor.py (inside the processor app) to the path where your allegro application is located. 
+
+You can use Postman to create/simulate requests.
+I have added sample requests inside the postman collection (json file in the test_resources directory)
+
+To create a job to be processed, you can post in this endpoint ``http://127.0.0.1:8000/job-queue/``.
+This process will create a job that will then be received by the queue processor.
+
+When the queue processor successfully converts the test zipped file, the files will be generated under the test_resources/{name of the zip file}_extracted.
+
+## Endpoints
+GET : <host>/job-queue/ -> get jobs to be processed
+POST : <host>/job-queue/ -> create jobs for processing
+POST : <host>/job-processor/ -> process jobs (endpoint for the conversion of the files located in the zipped file)

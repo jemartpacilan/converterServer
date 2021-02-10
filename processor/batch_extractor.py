@@ -13,11 +13,13 @@ from pywinauto import timings
 logger = logging.getLogger("django.error")
 logger_info = logging.getLogger("django.info")
 
+
 class BatchExtractor(object):
     """
     Receives a zipped file location and extracts all the contents of the file
     Uses allegro application to convert edf files to olb
     """
+
     def __init__(self, zip_location):
         self.zip_location = zip_location
 
@@ -94,14 +96,15 @@ class BatchExtractor(object):
             pyautogui.hotkey("ctrl", "a")
             # This is for testing only
             pyautogui.typewrite(
-                r'{}\{}.edf'.format(self.extracted_folder, self.zip_location.split("\\")[-1].split('.')[0])
+                r"{}\{}.edf".format(
+                    self.extracted_folder,
+                    self.zip_location.split("\\")[-1].split(".")[0],
+                )
             )
             pyautogui.click(860, 535)
             pyautogui.hotkey("ctrl", "a")
             # Modify this to a more dynamic url. This is for testing only
-            pyautogui.typewrite(
-                r'{}\EDI2CAP.CFG'.format(self.extracted_folder)
-            )
+            pyautogui.typewrite(r"{}\EDI2CAP.CFG".format(self.extracted_folder))
             pyautogui.click(920, 660)
             current_time = datetime.now()
             time_delta = current_time - start_time

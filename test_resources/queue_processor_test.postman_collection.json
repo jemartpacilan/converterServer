@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "c73164b5-1597-426f-93c1-c5e6f40f12b9",
+		"name": "queue_processor_test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:8000/job-queue/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "component_id",
+							"value": "12333",
+							"type": "text"
+						},
+						{
+							"key": "access_url",
+							"value": "test_resources\\LM324N_NOPB.zip",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/job-queue/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"job-queue",
+						""
+					]
+				},
+				"description": "Get job objects"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/job-queue/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "access_url",
+							"value": "test_resources\\LM324N_NOPB.zip",
+							"type": "text"
+						},
+						{
+							"key": "component_id",
+							"value": "1123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/job-queue/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"job-queue",
+						""
+					]
+				},
+				"description": "Create a new Job object for conversion"
+			},
+			"response": []
+		}
+	]
+}
