@@ -7,7 +7,7 @@ Current implementation:
 
 Since I have no access with the download request url/endpoint of the SnapEDA website, I have created a custom endpoint that will create a job.
     This job will then be added to the queue to process the test zipped file. The test zipped file can be found in the test_resources directory.
-    To run the queue for testing, run this command ``python queue_processor.py``. This script will perform requests to get the job that is ready to be processed in the queue. More info on how you test this in the "To Test" section
+    To run the queue for testing, run this command ``python queue_processor.py``. This script will perform requests to get the job that is ready to be processed in the queue. More info on how you test this in the [To Test](#to-test) section
 
 ## Requirements
 
