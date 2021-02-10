@@ -49,3 +49,6 @@ GET : <host>/job-queue/ -> get jobs to be processed
 POST : <host>/job-queue/ -> create jobs for processing
 
 POST : <host>/job-processor/ -> process jobs (endpoint for the conversion of the files located in the zipped file)
+
+## Further Improvements
+* Use pywinauto instead of pyautogui to automate application process. The reason for this is that pyautogui uses coordinates (for mouse clicks) that might change due to resolution. This will result to mouse clicking errors if not handled properly. Using pywinauto will be much more efficient since it has functionalities that lets you interact with the elements of the window application. This means that you can directly access an element properly regardless of the resolution of the screen.
