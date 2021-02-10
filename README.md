@@ -5,15 +5,14 @@ Server will take download requests from Snapeda website when the downloaded form
 Current implementation:
     Since I have no access with the download request url/endpoint of the SnapEDA website, I have created a custom endpoint that will create a job.
     This job will then be added to the queue to process the test zipped file. The test zipped file can be found in the test_resources directory.
-
-    To run the queue for testing, run this command ```python queue_processor.py```. This script will perform requests to get the job that is ready to be processed in the queue. More info on how you test this in the "To Test" section
+    To run the queue for testing, run this command ``python queue_processor.py``. This script will perform requests to get the job that is ready to be processed in the queue. More info on how you test this in the "To Test" section
 
 ## Requirements
 
 Python 3.x
 
 ## Installation
-I suggest to setup a virtual env of your choice before installing the dependencies.
+I suggest you to setup a virtual environment of your choice before installing the dependencies.
 
 To install the dependencies of this project, run:
 ```
@@ -32,7 +31,7 @@ python queue_processor.py
 ```
 
 ## To Test
-First you need to change the ALLEGRO PATH variable (line 86) in the batch_extractor.py (inside the processor app) to the path where your allegro application is located. 
+First you need to change the ALLEGRO PATH (line 86) in the batch_extractor.py (inside the processor app) to the path where your allegro application is located. 
 
 You can use Postman to create/simulate requests.
 I have added sample requests inside the postman collection (json file in the test_resources directory)
@@ -44,5 +43,7 @@ When the queue processor successfully converts the test zipped file, the files w
 
 ## Endpoints
 GET : <host>/job-queue/ -> get jobs to be processed
+
 POST : <host>/job-queue/ -> create jobs for processing
+
 POST : <host>/job-processor/ -> process jobs (endpoint for the conversion of the files located in the zipped file)
