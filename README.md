@@ -5,7 +5,7 @@ Server will take download requests from Snapeda website when the downloaded form
 Current implementation:
     Most of the functionalities were just being reused from the azureserver repo. However, I have used class-based views to make it more maintainable and reusable. I have also added comments for further readability.
 
-    Since I have no access with the download request url/endpoint of the SnapEDA website, I have created a custom endpoint that will create a job.
+Since I have no access with the download request url/endpoint of the SnapEDA website, I have created a custom endpoint that will create a job.
     This job will then be added to the queue to process the test zipped file. The test zipped file can be found in the test_resources directory.
     To run the queue for testing, run this command ``python queue_processor.py``. This script will perform requests to get the job that is ready to be processed in the queue. More info on how you test this in the "To Test" section
 
