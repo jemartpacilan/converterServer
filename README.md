@@ -34,12 +34,12 @@ python queue_processor.py
 
 ## To Test
 First you need to change the ALLEGRO PATH (line 86) in the batch_extractor.py (inside the processor app) to the path where your allegro application is located. 
-You also need to change the path in the open.bat file to the your allegro application location.
+You also need to change the path in the open.bat file to your allegro application location.
 
 You can use Postman to create/simulate requests.
 I have added sample requests inside the postman collection (json file in the test_resources directory)
 
-To create a job to be processed, you can post in this endpoint ``http://127.0.0.1:8000/job-queue/``.
+To create a job to be processed, you can perform post operation in this endpoint ``http://127.0.0.1:8000/job-queue/``.
 This process will create a job that will then be received by the queue processor.
 
 When the queue processor successfully converts the test zipped file, the files will be generated under the test_resources/{name of the zip file}_extracted.
