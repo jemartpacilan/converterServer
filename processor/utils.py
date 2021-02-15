@@ -4,6 +4,9 @@ import logging, re, subprocess
 logger = logging.getLogger("django.error")
 
 def process_in_allegro(zip_location):
+    """
+    Method for extracting and conversion of files using allegro software
+    """
     my_extractor = BatchExtractor(zip_location)
     extraction_successful = my_extractor.extract_files()
 

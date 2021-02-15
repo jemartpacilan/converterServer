@@ -63,11 +63,10 @@ class QProcessor():
                 windows = Desktop(backend="uia").windows()
                 for win in windows:
                     try:
-                        if ('Command Prompt' in win.__str__()
-                                or 'Powershell' in win.__str__()):
-                            continue
-                        else:
+                        if ('OrCAD Capture CIS - Lite' in win.__str__()):
                             win.close()
+                        else:
+                            continue
                     except:
                         continue
             except:

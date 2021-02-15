@@ -1,14 +1,7 @@
-import logging
-import os
-import re
-import shutil
-import subprocess
-import sys
-import zipfile
-import pyautogui
 from datetime import datetime
 from pywinauto.application import Application
 from pywinauto import timings
+import os, logging, re, shutil, subprocess, sys, zipfile, pyautogui
 
 logger = logging.getLogger("django.error")
 logger_info = logging.getLogger("django.info")
@@ -47,7 +40,7 @@ class BatchExtractor(object):
             return f.read()
 
     def collect_files(self):
-        processed_files = os.listdir("./" + self.extracted_folder)
+        processed_files = os.listdir(self.extracted_folder)
         logger_info.info(processed_files)
         match_string = ".*(\.dra|\.edf|\.html|\.pad|\.psm|\.ssm|\.CFG|\.olb)"
         self.final_files = [

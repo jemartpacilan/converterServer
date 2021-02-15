@@ -3,13 +3,13 @@ from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
-from .batch_extractor import BatchExtractor
 from .models import Job
 from .utils import process_in_allegro, terminate_process
-import base64, os, json, logging, sys, re
+import base64, os, json, logging, sys
 
 logger = logging.getLogger("django.error")
 logger_info = logging.getLogger("django.info")
+
 
 @method_decorator(csrf_exempt, name="dispatch")
 class JobView(View):
@@ -46,7 +46,7 @@ class JobProcessorView(View):
     def post(self, request):
         # Endpoint to process the job for extraction of files and conversion to .olb
         msg = "Something went wrong"
-        status = 'PROCESSING'
+        status = "PROCESSING"
 
         queue_id = request.POST.get("id")
 
@@ -57,22 +57,21 @@ class JobProcessorView(View):
         content = response.content
         if "Please provide a link" in content or "Error Encountered" in content:
             msg = content
+            Job.update_state(queue_id, "FAILED", timezone.now())
         else:
             msg = "Succesfully converted!"
             status = "COMPLETED"
-
-        Job.update_state(queue_id, "COMPLETED", timezone.now())
-        obj = {
-            "status": status,
-            "message": msg
-        }
+            Job.update_state(queue_id, "COMPLETED", timezone.now())
+        obj = {"status": status, "message": msg}
         return HttpResponse(obj, content_type="application/json")
 
     def process_test_request(self, request):
         # This method is only used for processing files locally (test env)
         # For testing only. Utilize process_production_request() for accessing download request
         return_file = process_in_allegro(
-            r'{}'.format(os.path.join(os.path.abspath(sys.path[0]), request.POST["access_url"]))
+            r"{}".format(
+                os.path.join(os.path.abspath(sys.path[0]), request.POST["access_url"])
+            )
         )
         return HttpResponse("processed", content_type="application/json")
 
